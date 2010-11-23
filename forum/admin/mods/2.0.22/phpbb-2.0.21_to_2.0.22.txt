@@ -1,0 +1,641 @@
+############################################################## 
+## MOD Title: phpBB 2.0.21 to phpBB 2.0.22 Code Changes
+## MOD Author: Acyd Burn < N/A > (Meik Sievertsen) N/A 
+## MOD Description: 
+##		
+##		
+##		These are the Changes from phpBB 2.0.21 to phpBB 2.0.22 summed up into a little
+##		Mod. This might be very helpful if you want to update your Board and have
+##		installed a bunch of Mods. Then it's normally easier to apply the Code Changes
+##		than to install all Mods again.
+##		
+##		When you find a 'AFTER, ADD'-Statement, the Code have to be added after the
+##		last line quoted in the 'FIND'-Statement.
+##		When you find a 'BEFORE, ADD'-Statement, the Code have to be added before the
+##		first line quoted in the 'FIND'-Statement.
+##		When you find a 'REPLACE WITH'-Statement, the Code quoted in the
+##		'FIND'-Statement have to be replaced completely with the quoted Code in the
+##		'REPLACE WITH'-Statement.
+##		
+##		When you find more than one 'FIND'-Statement it just means that you go down the
+##		code within the order of the 'FIND'-Statements, if you found the lines for the
+##		first 'FIND'-Statement, you continue to search the lines for the second
+##		'FIND'-Statement. The last 'FIND'-Statement includes the codeblock to work
+##		with.
+##		
+##		For a comprehensive explanation about installing MODs, please visit this url:
+##		http://www.phpbb.com/kb/article.php?article_id=150
+##		
+##		After you have finished this tutorial, you have to upload the
+##		install/update_to_latest.php file, execute it and then delete it from your
+##		webspace.
+##		
+##			
+##		
+## MOD Version: 1.0.0 
+## 
+## Installation Level: Easy
+## Installation Time: 20 Minutes 
+## Files To Edit: 
+##		admin/admin_board.php
+##		groupcp.php
+##		includes/functions.php
+##		includes/usercp_email.php
+##		includes/usercp_register.php
+##		language/lang_english/lang_main.php
+##		login.php
+##		memberlist.php
+##		modcp.php
+##		posting.php
+##		privmsg.php
+##		search.php
+##		templates/subSilver/posting_body.tpl
+##		viewforum.php
+##		viewtopic.php
+##
+## Included Files: install/update_to_latest.php
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2 
+############################################################## 
+## For security purposes, please check: http://www.phpbb.com/mods/ 
+## for the latest version of this MOD. Although MODs are checked 
+## before being allowed in the MODs Database there is no guarantee 
+## that there are no security problems within the MOD. No support 
+## will be given for MODs not found within the MODs Database which 
+## can be found at http://www.phpbb.com/mods/ 
+############################################################## 
+## Author Notes: 
+## 
+##	
+############################################################## 
+## MOD History: 
+## 
+##   2006-12-19 - Version 1.0.0 
+##      - first release 
+## 
+############################################################## 
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD 
+############################################################## 
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+admin/admin_board.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 55
+		// Attempt to prevent a common mistake with this value,
+		// http:// is the protocol and not part of the server name
+		if ($config_name == 'server_name')
+		{
+			$new['server_name'] = str_replace('http://', '', $new['server_name']);
+		}
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+		// Attempt to prevent a mistake with this value.
+		if ($config_name == 'avatar_path')
+		{
+			$new['avatar_path'] = trim($new['avatar_path']);
+			if (strstr($new['avatar_path'], "\0") || !is_dir($phpbb_root_path . $new['avatar_path']) || !is_writable($phpbb_root_path . $new['avatar_path']))
+			{
+				$new['avatar_path'] = $default_config['avatar_path'];
+			}
+		}
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+groupcp.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 150
+$start = ( isset($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 417
+							AND NOT EXISTS (
+							SELECT aa.group_id 
+							FROM " . AUTH_ACCESS_TABLE . " aa 
+							WHERE aa.group_id = g.group_id  
+						)
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 422
+					)";
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+					)
+				ORDER BY aa.auth_mod DESC";
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 425
+
+		case 'oracle':
+			$sql = "SELECT g.group_moderator, g.group_type, aa.auth_mod 
+				FROM " . GROUPS_TABLE . " g, " . AUTH_ACCESS_TABLE . " aa 
+				WHERE g.group_id = $group_id
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 430
+					AND aa.group_id (+) = g.group_id";
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+					AND aa.group_id (+) = g.group_id
+				ORDER BY aa.auth_mod DESC";
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 433
+
+		default:
+			$sql = "SELECT g.group_moderator, g.group_type, aa.auth_mod 
+				FROM ( " . GROUPS_TABLE . " g 
+				LEFT JOIN " . AUTH_ACCESS_TABLE . " aa ON aa.group_id = g.group_id )
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 438
+				WHERE g.group_id = $group_id";
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+				WHERE g.group_id = $group_id
+				ORDER BY aa.auth_mod DESC";
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+includes/functions.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 915
+	if (strstr(urldecode($url), "\n") || strstr(urldecode($url), "\r"))
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+	if (strstr(urldecode($url), "\n") || strstr(urldecode($url), "\r") || strstr(urldecode($url), ';url'))
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+includes/usercp_email.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 53
+if ( $result = $db->sql_query($sql) )
+{
+	$row = $db->sql_fetchrow($result);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+if ( $result = $db->sql_query($sql) )
+{
+	if ( $row = $db->sql_fetchrow($result) )
+	{
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 206
+else
+{
+	message_die(GENERAL_MESSAGE, $lang['User_not_exist']);
+}
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+	else
+	{
+		message_die(GENERAL_MESSAGE, $lang['User_not_exist']);
+	}
+}
+else
+{
+	message_die(GENERAL_ERROR, 'Could not select user data', '', __LINE__, __FILE__, $sql);
+}
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+includes/usercp_register.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 145
+	$notifypm = ( isset($HTTP_POST_VARS['notifypm']) ) ? ( ($HTTP_POST_VARS['notifypm']) ? TRUE : 0 ) : TRUE;
+	$popup_pm = ( isset($HTTP_POST_VARS['popup_pm']) ) ? ( ($HTTP_POST_VARS['popup_pm']) ? TRUE : 0 ) : TRUE;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	$sid = (isset($HTTP_POST_VARS['sid'])) ? $HTTP_POST_VARS['sid'] : 0;
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 253
+if ( isset($HTTP_POST_VARS['submit']) )
+{
+	include($phpbb_root_path . 'includes/usercp_avatar.'.$phpEx);
+
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	// session id check
+	if ($sid == '' || $sid != $userdata['session_id'])
+	{
+		$error = true;
+		$error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Session_invalid'];
+	}
+
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 298
+				message_die(GENERAL_ERROR, 'Could not obtain confirmation code', __LINE__, __FILE__, $sql);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+				message_die(GENERAL_ERROR, 'Could not obtain confirmation code', '', __LINE__, __FILE__, $sql);
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 315
+						message_die(GENERAL_ERROR, 'Could not delete confirmation code', __LINE__, __FILE__, $sql);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+						message_die(GENERAL_ERROR, 'Could not delete confirmation code', '', __LINE__, __FILE__, $sql);
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 903
+	$s_hidden_fields = '<input type="hidden" name="mode" value="' . $mode . '" /><input type="hidden" name="agreed" value="true" /><input type="hidden" name="coppa" value="' . $coppa . '" />';
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	$s_hidden_fields .= '<input type="hidden" name="sid" value="' . $userdata['session_id'] . '" />';
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+language/lang_english/lang_main.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1019
+$lang['Please_remove_install_contrib'] = 'Please ensure both the install/ and contrib/ directories are deleted';
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+
+$lang['Session_invalid'] = 'Invalid Session. Please resubmit the form.';
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+login.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 121
+				if (strstr(urldecode($redirect), "\n") || strstr(urldecode($redirect), "\r"))
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+				if (strstr(urldecode($redirect), "\n") || strstr(urldecode($redirect), "\r") || strstr(urldecode($redirect), ';url'))
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 140
+			if (strstr(urldecode($redirect), "\n") || strstr(urldecode($redirect), "\r"))
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+			if (strstr(urldecode($redirect), "\n") || strstr(urldecode($redirect), "\r") || strstr(urldecode($redirect), ';url'))
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+memberlist.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 36
+$start = ( isset($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+modcp.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 73
+$start = ( isset($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+posting.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 46
+$confirm = isset($HTTP_POST_VARS['confirm']) ? true : false;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$sid = (isset($HTTP_POST_VARS['sid'])) ? $HTTP_POST_VARS['sid'] : 0;
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 221
+if ( $result = $db->sql_query($sql) )
+{
+	$post_info = $db->sql_fetchrow($result);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+if ( ($result = $db->sql_query($sql)) && ($post_info = $db->sql_fetchrow($result)) )
+{
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 432
+	$s_hidden_fields = '<input type="hidden" name="' . POST_POST_URL . '" value="' . $post_id . '" />';
+	$s_hidden_fields .= ( $delete || $mode == "delete" ) ? '<input type="hidden" name="mode" value="delete" />' : '<input type="hidden" name="mode" value="poll_delete" />';
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	$s_hidden_fields .= '<input type="hidden" name="sid" value="' . $userdata['session_id'] . '" />';
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 541
+	// Submit post/vote (newtopic, edit, reply, etc.)
+	//
+	$return_message = '';
+	$return_meta = '';
+
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	// session id check
+	if ($sid == '' || $sid != $userdata['session_id'])
+	{
+		$error_msg .= (!empty($error_msg)) ? '<br />' . $lang['Session_invalid'] : $lang['Session_invalid'];
+	}
+
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 573
+			break;
+
+		case 'delete':
+		case 'poll_delete':
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+			if ($error_msg != '')
+			{
+				message_die(GENERAL_MESSAGE, $error_msg);
+			}
+
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 939
+		$topic_type_toggle = $lang['Post_topic_as'] . ': <input type="radio" name="topictype" value="' . POST_NORMAL .'"' . ( ( $post_data['topic_type'] == POST_NORMAL || $topic_type == POST_NORMAL ) ? ' checked="checked"' : '' ) . ' /> ' . $lang['Post_Normal'] . '&nbsp;&nbsp;' . $topic_type_toggle;
+	}
+}
+
+$hidden_form_fields = '<input type="hidden" name="mode" value="' . $mode . '" />';
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$hidden_form_fields .= '<input type="hidden" name="sid" value="' . $userdata['session_id'] . '" />';
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+privmsg.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 51
+$delete_all = ( isset($HTTP_POST_VARS['deleteall']) ) ? TRUE : 0;
+$save = ( isset($HTTP_POST_VARS['save']) ) ? TRUE : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$sid = (isset($HTTP_POST_VARS['sid'])) ? $HTTP_POST_VARS['sid'] : 0;
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 101
+	$mode = '';
+}
+
+$start = ( !empty($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1161
+		unset($row);
+	}
+
+	if ( $submit )
+	{
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+		// session id check
+		if ($sid == '' || $sid != $userdata['session_id'])
+		{
+			$error = true;
+			$error_msg .= ( ( !empty($error_msg) ) ? '<br />' : '' ) . $lang['Session_invalid'];
+		}
+
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1383
+		$privmsg_message = preg_replace('#<textarea>#si', '&lt;textarea&gt;', $privmsg_message);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		// $privmsg_message = preg_replace('#<textarea>#si', '&lt;textarea&gt;', $privmsg_message);
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1487
+			$privmsg_message = preg_replace('#</textarea>#si', '&lt;/textarea&gt;', $privmsg_message);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+			// $privmsg_message = preg_replace('#</textarea>#si', '&lt;/textarea&gt;', $privmsg_message);
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1530
+				$privmsg_message = preg_replace('#</textarea>#si', '&lt;/textarea&gt;', $privmsg_message);
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+				// $privmsg_message = preg_replace('#</textarea>#si', '&lt;/textarea&gt;', $privmsg_message);
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1657
+	//
+	// Start error handling
+	//
+	if ($error)
+	{
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+		$privmsg_message = htmlspecialchars($privmsg_message);
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 1747
+	$s_hidden_fields = '<input type="hidden" name="folder" value="' . $folder . '" />';
+	$s_hidden_fields .= '<input type="hidden" name="mode" value="' . $mode . '" />';
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	$s_hidden_fields .= '<input type="hidden" name="sid" value="' . $userdata['session_id'] . '" />';
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+search.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 117
+	$topic_days = 0;
+}
+
+$start = ( isset($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+templates/subSilver/posting_body.tpl
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 370
+					</select> &nbsp;{L_FONT_SIZE}:<select name="addbbcode20" onChange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" onMouseOver="helpline('f')">
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+					</select> &nbsp;{L_FONT_SIZE}:<select name="addbbcode20" onChange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.selectedIndex=0;" onMouseOver="helpline('f')">
+					  <option value="0" class="genmed">{L_FONT_SIZE}</option>
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+viewforum.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 41
+	$forum_id = '';
+}
+
+$start = ( isset($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+viewtopic.php
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 44
+	$post_id = intval($HTTP_GET_VARS[POST_POST_URL]);
+}
+
+
+$start = ( isset($HTTP_GET_VARS['start']) ) ? intval($HTTP_GET_VARS['start']) : 0;
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+$start = ($start < 0) ? 0 : $start;
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM

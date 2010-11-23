@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Nederlands (Dutch) 
+## Rev date:    13/12/2003
+##
+## Translator:  maatstra < h.maat@lycos.nl > (n/a) n/a
+## 
+##############################################################
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_dutch/lang_admin.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ='Mededeling'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_dutch/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_global_announcement']='<b>Mededeling:</b>'; 
+$lang['Post_global_announcement'] = 'Mededeling'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM

@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Chinese Traditional Taiwan
+## Rev date:    13/12/2003 
+## 
+## Translator:  ckm < ckm@pie.com.tw > (n/a) http://www.csfuture.com
+## 
+##############################################################
+#
+#-----[ OPEN ]------------------------------------------------
+#
+language/lang_chinese_traditional_taiwan/lang_admin.php 
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+?>
+
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ='全域公告';
+// End add - Global announcement MOD
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+language/lang_chinese_traditional_taiwan/lang_main.php
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+?>
+
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+
+// Start add - Global announcement MOD
+$lang['Topic_global_announcement']='<b>全域公告:</b>'; 
+$lang['Post_global_announcement'] = '全域公告';
+// End add - Global announcement MOD
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]--------------------------------
+#
+# EoM

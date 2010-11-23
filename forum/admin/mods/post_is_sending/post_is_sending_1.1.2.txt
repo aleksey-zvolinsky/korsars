@@ -1,0 +1,138 @@
+############################################################## 
+## MOD Title: Post Is Sending 
+## MOD Author: Xpert < xpert@phpbbguru.net > (N/A) http://www.phpbbguru.net 
+## MOD Author: R@ < meos@mail.ru > (Kirill) http://osdev.ru 
+## MOD Description: This mod changes post submit button text  from "Submit" to "Sending" on posting to ensure user 
+## that his message is being send. And adds protection from double post 
+## MOD Version: 1.1.2 
+## 
+## Installation Level: Easy 
+## Installation Time: 3 Minutes 
+## Files To Edit: posting.php 
+##                privmsg.php 
+##                language/lang_russian/lang_main.php 
+##                language/lang_english/lang_main.php    
+##                templates/subSilver/posting_body.tpl 
+## Included Files: n/a 
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2 
+############################################################## 
+## For security purposes, please check: http://www.phpbb.com/mods/ 
+## for the latest version of this MOD. Although MODs are checked 
+## before being allowed in the MODs Database there is no guarantee 
+## that there are no security problems within the MOD. No support 
+## will be given for MODs not found within the MODs Database which 
+## can be found at http://www.phpbb.com/mods/ 
+##############################################################
+## Author Notes: 
+##      Thanks to Jovani for idea of double post protection 
+############################################################## 
+## MOD History:
+## 
+##   2004-10-16 - Version 1.1.2 
+##      - Different how-to fixes
+## 
+##   2004-06-08 - Version 1.1.1 
+##      - Bug with PM sending fixed
+##
+##   2004-06-07 - Version 1.1.0 
+##      - Double post protection added 
+##
+##   2004-06-06 - Version 1.0.0 
+##      - Initial Release 
+## 
+############################################################## 
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD 
+############################################################## 
+
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+posting.php 
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+		'L_SUBMIT' => $lang['Submit'], 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+		// [begin] Post Is Sending	
+		'L_SENDING' => $lang['Sending'], 
+		// [end] Post Is Sending
+	
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+privmsg.php 
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+		'L_SUBMIT' => $lang['Submit'], 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+		// [begin] Post Is Sending	
+		'L_SENDING' => $lang['Sending'], 
+		// [end] Post Is Sending
+
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+language/lang_english/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+$lang['Submit'] = 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+// [begin] Post Is Sending
+$lang['Sending'] = 'Sending';
+// [end] Post Is Sending
+
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+language/lang_russian/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+$lang['Submit'] =
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+// [begin] Post Is Sending
+$lang['Sending'] = 'Отправляется';
+// [end] Post Is Sending
+
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+templates/subSilver/posting_body.tpl 
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+
+		bbstyle(-1); 
+      		//formObj.preview.disabled = true; 
+      		//formObj.submit.disabled = true; 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+		<!-- [begin] Post Is Sending -->
+	        setTimeout("document.post.post.disabled = true; document.post.post.value='{L_SENDING}'", 0); 
+		<!-- [end] Post Is Sending -->
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM

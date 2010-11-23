@@ -1,0 +1,373 @@
+############################################################## 
+## MOD Title:          Show user groups
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk 
+## MOD Description:    This mod will add information about the
+##                     posters current membership of any
+##                     usergroups, they belong to. The list is
+##                     shown beside the users posts/users profile.
+## MOD Version:        1.3.6
+## MOD Compatibility:  2.0.8
+## 
+## Installation Level: Easy
+## Installation Time:  20 Minutes (1mn by EasyMOD of Nuttzy)
+## Files To Edit:      6
+##      viewtopic.php
+##      includes/template.php
+##      includes/usercp_viewprofile.php
+##      templates/subSilver/profile_view_body.tpl
+##      templates/subSilver/subSilver.cfg
+##      templates/subSilver/viewtopic_body.tpl
+##
+## Included Files:     7
+##      root/includes/functions_usergroup.php
+##      root/templates/subSilver/show_usergroup.tpl
+##      root/templates/subSilver/show_usergroup_image_only.tpl
+##      root/templates/subSilver/show_usergroup_as_dropdown.tpl
+##      root/templates/subSilver/images/groups_diamond3.gif
+##      root/templates/subSilver/images/groups_snow.gif
+##      root/templates/subSilver/images/groups_star2.gif
+##
+############################################################## 
+## For Security Purposes, Please Check: http://www.phpbb.com/mods/ for the 
+## latest version of this MOD. Downloading this MOD from other sites could cause malicious code 
+## to enter into your phpBB Forum. As such, phpBB will not offer support for MOD's not offered 
+## in our MOD-Database, located at: http://www.phpbb.com/mods/ 
+############################################################## 
+## Author Notes: 
+## 
+## 1. Full MOD description
+## -----------
+## This mod will add information about the posters current
+## membership of any usergroups, they belong to. The list
+## is shown beside the users posts/users profile. Hidden
+## groups are shown in itallic (only if the viewing user also
+## are a member).
+## Now also support show images for usergroups.
+##
+## 2. EasyMOD
+## -----------
+## This MOD is compatible and can be installed by EasyMOD
+## of Nuttzy (but is not officially EasyMOD Compliant)!
+## http://area51.phpbb.com/phpBB22/viewforum.php?sid=&f=15
+##
+## 3. Official last version link
+## -----------
+## Meanwhile the phpBB group validation and as the MOD is not yet
+## in the phpBB MOD database, check this official link for updates...
+## http://mods.db9.dk/viewtopic.php?t=11
+##
+############################################################## 
+## MOD History: 
+## 
+##   2004-05-24 - Version 1.3.6
+##      - included memberlist add-on
+##	- included a tempalte for image only
+##
+##   2003-12-22 - Version 1.3.5
+##      - phpBB template & EasyMOD compliance enhancement
+## 
+##   2003-10-13 - Version 1.3.4
+##      - fixed a problem with missing images
+##
+##   2003-10-10 - Version 1.3.3
+##      - fixed a problem with drop-down list in users profile
+##
+##   2003-09-04 - Version 1.3.2
+##      - fixed a problem with viewtopic.php (change the included file)
+##	- added new features to template.php
+##
+##   2003-08-29 - Version 1.3.1
+##      - updated the included file functions_usergroup.php
+##
+##   2003-08-27 - Version 1.3.0
+##      - Complete re-write, now uses own template file to
+##        define the show layout
+##      - Name changed from "member of" to "Show usergroup" as
+##        it is more correct
+##
+##   2003-08-27 - Version 1.2.7
+##      - fixing a bug, witch couse by version 1.2.4, made
+##        hidden group visible
+##
+##   2003-08-23 - Version 1.2.6
+##      - now rewritten how-to, to be EM ready
+##
+##   ????-??-?? - Version 1.2.5
+##      - improved code, now uses 1 SQL, and improved the
+##        options in template code
+##
+##   ????-??-?? - Version 1.2.4
+##      - code changed to allow more flex style control
+##
+##   ????-??-?? - Version 1.2.3
+##      - confirmed for 2.0.5 by "kooky"
+##
+##   ????-??-?? - Version 1.2.2
+##      - support images as well, code the group id into the
+##        template image file (e.g. subSilver.cfg)
+##
+##   ????-??-?? - Version 1.2.1
+##      - added commas between usergroups
+##
+##   ????-??-?? - Version 1.2.0
+##      - fixed a bug, causing user group to be none
+##      - also confirmed for phpBB2 version 2.0.2
+##
+##   ????-??-?? - Version 0.9.2
+##      - History started, security update, now hidden groups
+##        are hidden if users are not allowed to view
+##
+##   ????-??-?? - Version 0.9.1
+##      - updated by to version 2.0.1. by Jérôme Gamez
+##        < Jerome@campinvaders.net> http://www.campinvaders.net
+##
+##   ????-??-?? - Version 0.9.0
+##      - Initial release phpBB2 RC-1
+##
+############################################################## 
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD 
+##############################################################
+#
+#-----[ COPY ]------------------------------------------------
+#
+copy root/includes/functions_usergroup.php to includes/functions_usergroup.php
+copy root/templates/subSilver/show_usergroup.tpl to templates/subSilver/show_usergroup.tpl
+copy root/templates/subSilver/show_usergroup_image_only.tpl to templates/subSilver/show_usergroup_image_only.tpl
+copy root/templates/subSilver/show_usergroup_as_dropdown.tpl to templates/subSilver/show_usergroup_as_dropdown.tpl
+copy root/templates/subSilver/images/groups_diamond3.gif to templates/subSilver/images/groups_diamond3.gif
+copy root/templates/subSilver/images/groups_snow.gif to templates/subSilver/images/groups_snow.gif
+copy root/templates/subSilver/images/groups_star2.gif to templates/subSilver/images/groups_star2.gif
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+viewtopic.php
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+//
+// Okay
+
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+
+// Start add - Show usergroups MOD
+include($phpbb_root_path . 'includes/functions_usergroup.'.$phpEx);
+// End add - Show usergroups MOD
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+#  WARNING, MENY USERS FAIL THIS STEP - I really se no reasoon why, but if you having truble, please check, and double check this part
+#  expecially notice the }
+
+}
+
+$template->pparse('body');
+
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+
+// Start add - Show usergroups MOD
+	if (display_usergroups($userdata['user_id'],$poster_id,'postrow'))
+	{
+		$template->append_block_vars('postrow',array(
+		'L_USER_GROUP' =>$lang['Usergroups'],
+		'L_GO' => $lang['Go']));
+	} else
+	{
+		$template->append_block_vars('postrow',array(
+		'L_NO_USER_GROUP' =>$lang['Usergroups'],
+		'L_NO_USERGROUPS'=> $lang['None']));
+	} 
+// End add - Show usergroups MOD
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+includes/template.php
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+}
+
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Show usergroups MOD
+	function append_var_from_handle_to_block($blockname,$varname, $handle)
+	{
+		if (!$this->loadfile($handle))
+		{
+			die("Template->assign_var_from_handle(): Couldn't load template file for handle $handle");
+		}
+		// Compile it, with the "no echo statements" option on.
+		$_str = "";
+		$code = $this->compile($this->uncompiled_code[$handle], true, '_str');
+		// evaluate the variable assignment.
+		eval($code);
+		// assign the value of the generated variable to the given varname.
+		$this->append_block_vars($blockname, array($varname => $_str));
+		return true;
+	}
+
+	function append_block_vars($blockname, $vararray)
+	{
+		if (strstr($blockname, '.'))
+		{
+			// Nested block.
+			$blocks = explode('.', $blockname);
+			$blockcount = sizeof($blocks) - 1;
+			$str = '$this->_tpldata';
+			for ($i = 0; $i <= $blockcount; $i++)
+			{
+				$str .= '[\'' . $blocks[$i] . '.\']';
+				eval('$lastiteration = sizeof(' . $str . ') - 1;');
+				$str .= '[' . $lastiteration . ']';
+			}
+			// Now we add the block that we're actually assigning to.
+			// We're adding a new iteration to this block with the given
+			// variable assignments.
+			$str .= '= array_merge('.$str.',$vararray);';
+			// Now we evaluate this assignment we've built up.
+			eval($str);
+		}
+		else
+		{
+			// Top-level block.
+			// Add a to existing block with the variable assignments
+			// we were given.
+			$current_iteration = sizeof($this->_tpldata[$blockname . '.'])-1;
+			$this->_tpldata[$blockname . '.'][$current_iteration] = array_merge($this->_tpldata[$blockname . '.'][$current_iteration],$vararray);
+		}
+
+		return true;
+	}
+
+	/**
+	* Flush a root level block, so it becomes empty.
+	*/
+	function flush_block_vars($blockname)
+	{
+		// Top-level block.
+		// flush a existing block we were given.
+		$current_iteration = sizeof($this->_tpldata[$blockname . '.'])-1;
+		unset($this->_tpldata[$blockname . '.']);
+		return true;
+	}
+// End add - Show usergroups MOD
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+includes/usercp_viewprofile.php
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+$template->pparse('body');
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Show usergroups MOD
+include($phpbb_root_path . 'includes/functions_usergroup.'.$phpEx);
+if (display_usergroups($userdata['user_id'],$profiledata[user_id],'','show_usergroup_as_dropdown'))
+{
+	$template->assign_vars(array(
+	'L_USER_GROUP' =>$lang['Usergroups']));
+} else
+{
+	$template->assign_vars(array(
+	'L_NO_USER_GROUP' =>$lang['Usergroups'],
+	'L_NO_USERGROUPS'=> $lang['None']));
+} 
+// End add - Show usergroups MOD
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+# Make sure to edit this file for every theme your admin uses.
+#
+templates/subSilver/profile_view_body.tpl 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+#
+{JOINED}</span></b></td>
+</tr>
+
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+
+<!-- Start add - Show usergroups MOD -->
+<tr> 
+   <td valign="middle" align="right"><span class="gen">{L_USER_GROUP}{L_NO_USER_GROUP}:</span></td> 
+   <td class="row1" valign="middle" width="100%"><b><span class="gen">{SHOW_USERGROUPS}{L_NO_USERGROUPS}</span></b></td> 
+</tr>
+<!-- End add - Show usergroups MOD -->
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+# Make sure to edit this file for every theme your admin uses.
+#
+templates/subSilver/subSilver.cfg
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+?>
+
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+
+// Start add - Show usergroups MOD
+//
+// Add as many as these as you have usergroups, the ID is the same
+// as the usergroup ID, these examples covers grop id 1->6
+//
+$images['groups']['1'] = "$current_template_images/groups_snow.gif";
+$images['groups']['2'] = "$current_template_images/groups_star2.gif";
+$images['groups']['3'] = "$current_template_images/groups_diamond3.gif";
+$images['groups']['4'] = "$current_template_images/groups_snow.gif";
+$images['groups']['5'] = "$current_template_images/groups_star2.gif";
+$images['groups']['6'] = "$current_template_images/groups_diamond3.gif";
+// End add - Show usergroups MOD
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+# Make sure to edit this file for every theme your admin uses.
+#
+templates/subSilver/viewtopic_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+{postrow.POSTER_FROM}
+
+#
+#-----[ IN-LINE FIND ]----------------------------------------
+#
+{postrow.POSTER_FROM}
+
+#
+#-----[ IN-LINE AFTER, ADD ]----------------------------------
+#
+<br/>{postrow.L_USER_GROUP}{postrow.L_NO_USER_GROUP}:&nbsp;{postrow.SHOW_USERGROUPS}{postrow.L_NO_USERGROUPS}
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+#
+# EoM

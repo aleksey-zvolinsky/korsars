@@ -1,0 +1,17 @@
+copy admin\admin_advanced.php ..\..\..\admin\admin_advanced.php
+copy templates\subSilver\admin\admin_advanced.tpl ..\..\..\templates\subSilver\admin\admin_advanced.tpl
+copy templates\subSilver\admin\admin_adv_pinfo.tpl ..\..\..\templates\subSilver\admin\admin_adv_pinfo.tpl
+copy templates\subSilver\admin\admin_adv_stat.tpl ..\..\..\templates\subSilver\admin\admin_adv_stat.tpl
+copy templates\subSilver\admin\admin_adv_whois.tpl ..\..\..\templates\subSilver\admin\admin_adv_whois.tpl
+copy templates\subSilver\images\aacp_k1.gif ..\..\..\templates\subSilver\images\aacp_k1.gif
+copy templates\subSilver\images\aacp_k2.gif ..\..\..\templates\subSilver\images\aacp_k2.gif
+copy templates\subSilver\images\aacp_k3.gif ..\..\..\templates\subSilver\images\aacp_k3.gif
+copy templates\subSilver\images\aacp_k4.gif ..\..\..\templates\subSilver\images\aacp_k4.gif
+copy ..\..\..\language\lang_english\lang_admin.php backups\language\lang_english\lang_admin.php.txt
+copy processed\language\lang_english\lang_admin.php.txt ..\..\..\language\lang_english\lang_admin.php
+copy ..\..\..\language\lang_russian\lang_admin.php backups\language\lang_russian\lang_admin.php.txt
+copy processed\language\lang_russian\lang_admin.php.txt ..\..\..\language\lang_russian\lang_admin.php
+copy ..\..\..\admin\index.php backups\admin\index.php.txt
+copy processed\admin\index.php.txt ..\..\..\admin\index.php
+copy ..\..\..\templates\subSilver\subSilver.cfg backups\templates\subSilver\subSilver.cfg.txt
+copy processed\templates\subSilver\subSilver.cfg.txt ..\..\..\templates\subSilver\subSilver.cfg

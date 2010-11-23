@@ -1,0 +1,17 @@
+cp admin/admin_advanced.php ../../../admin/admin_advanced.php
+cp templates/subSilver/admin/admin_advanced.tpl ../../../templates/subSilver/admin/admin_advanced.tpl
+cp templates/subSilver/admin/admin_adv_pinfo.tpl ../../../templates/subSilver/admin/admin_adv_pinfo.tpl
+cp templates/subSilver/admin/admin_adv_stat.tpl ../../../templates/subSilver/admin/admin_adv_stat.tpl
+cp templates/subSilver/admin/admin_adv_whois.tpl ../../../templates/subSilver/admin/admin_adv_whois.tpl
+cp templates/subSilver/images/aacp_k1.gif ../../../templates/subSilver/images/aacp_k1.gif
+cp templates/subSilver/images/aacp_k2.gif ../../../templates/subSilver/images/aacp_k2.gif
+cp templates/subSilver/images/aacp_k3.gif ../../../templates/subSilver/images/aacp_k3.gif
+cp templates/subSilver/images/aacp_k4.gif ../../../templates/subSilver/images/aacp_k4.gif
+cp ../../../language/lang_english/lang_admin.php backups/language/lang_english/lang_admin.php.txt
+cp processed/language/lang_english/lang_admin.php.txt ../../../language/lang_english/lang_admin.php
+cp ../../../language/lang_russian/lang_admin.php backups/language/lang_russian/lang_admin.php.txt
+cp processed/language/lang_russian/lang_admin.php.txt ../../../language/lang_russian/lang_admin.php
+cp ../../../admin/index.php backups/admin/index.php.txt
+cp processed/admin/index.php.txt ../../../admin/index.php
+cp ../../../templates/subSilver/subSilver.cfg backups/templates/subSilver/subSilver.cfg.txt
+cp processed/templates/subSilver/subSilver.cfg.txt ../../../templates/subSilver/subSilver.cfg

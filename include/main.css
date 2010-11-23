@@ -1,0 +1,23 @@
+body{font-size: 14px; margin-top: 0px; margin-bottom: 0px; text-indent:0px;}
+table{border-width: none;}
+h1, h2, h3, h4, h5, h6{font-family: Geneva, Arial, Helvetica, sans-serif; color:#333366}
+h1{text-align:center;font-size: 18px; font-style:italic; margin-top: 12px;}
+h2{text-align:center;font-size: 16px;}
+h3{text-align:left;font-size: 16px;}
+p{}
+a{color:#000033}
+a:hover{color:#000033}
+table#MainTable{width: 100%;border-width: thick; height: 100%}
+#MainDetailedMenu table tr td{ font-family:Arial; font-weight: bold; padding: 0px 0px 0px 8px; height: 44px; vertical-align: middle;}
+#MainDetailedMenu table tr td a{text-decoration: none; text-transform: uppercase; font-size: 16px; display:block; padding: 10px 0px 0px 35px;}
+#MainDetailedMenu table tr td a{ background: url(../images/carabine1.gif) no-repeat; display:block;height: 44px;}
+#MainDetailedMenu table tr td a:hover{ background: url(../images/carabine_hover1.gif) no-repeat; display:block;}
+#Content {color:#000033; text-indent:20px; padding-left: 10px; padding-right: 10px;}
+#Content a{color:#996666}
+#Content a:hover{color:#996666}
+#Content #news {text-indent:0px; padding-top:0px; padding-bottom:0px;}
+#Content #news .date{font-size:15px; color:#666699; font-weight:bold;text-indent:20px;}
+#Copyright{font-size:13px;}
+#LeftBanner table{width: 100%;}
+#LeftBanner table tr td{text-align: center;}
+#LeftBanner table tr.header td{text-align: center; font-weight: bold;}

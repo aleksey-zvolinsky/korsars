@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Deutsch (German) 
+## Rev date:    13/12/2003
+##
+## Translator:  Balint < balint@krizsan.de > (n/a) http://www.krizsan.de
+## 
+##############################################################
+# 
+#-----[ OPEN ]------------------------------------------------ 
+#
+language/lang_german/lang_admin.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ='Globale Ankündigung'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+#
+language/lang_german/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_global_announcement']='<b>Globale Ankündigung:</b>'; 
+$lang['Post_global_announcement'] = 'Globale Ankündigung'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM

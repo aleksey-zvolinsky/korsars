@@ -1,0 +1,58 @@
+##############################################################
+## MOD Title: Page Generation Time
+## MOD Author: Smartor < smartor_xp@hotmail.com > (Hoang Ngoc Tu) http://smartor.is-root.com
+## MOD Description:	This MOD will show page generation info in the page footer
+##	Eg: Page generation time: 0.4873s (PHP: 83% - SQL: 17%) - SQL queries: 14 - GZIP enabled - Debug on
+##
+## MOD Version: 2.0.1
+##
+## Installation Level: easy
+## Installation Time: 1 Minutes
+##
+## Files To Overwrite: 4
+##	extension.inc
+##	db/mysql.php
+##	db/mysql4.php
+##	includes/page_tail.php
+##
+## Included Files: N/A
+##############################################################
+## For Security Purposes, Please Check: http://www.phpbb.com/mods/downloads/ for the
+## latest version of this MOD. Downloading this MOD from other sites could cause malicious code
+## to enter into your phpBB Forum. As such, phpBB will not offer support for MOD's not offered
+## in our MOD-Database, located at: http://www.phpbb.com/mods/downloads/
+##############################################################
+## Author Notes:
+##
+##	I am too lazy to write (too many) instructions for this (too trivia) MOD
+##
+##	o Tips:
+##
+##		If you want only Admins can view the page generation info just
+##		un-comment line 53 (or around 53) in page_tail.php
+##
+##	o Warning:
+##
+##		Only works for MySQL v3 and v4
+##		Remember to backup and beware and take all responsible (certainly) for your actions!
+##
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+
+#
+#-----[ COPY ]-------------------------------------------------------
+# These following instructions mean...
+# Upload all files in directory "phpbb_root" with their structure to your phpBB root directory
+
+copy phpbb_root/extension.inc to extension.inc
+copy phpbb_root/db/mysql.php to db/mysql.php
+copy phpbb_root/db/mysql.php to db/mysql4.php
+copy phpbb_root/includes/*.php to includes/*.php
+
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM

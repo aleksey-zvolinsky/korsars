@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Español (Spanish) 
+## Rev date:    13/12/2003
+##
+## Translator:  ThE KuKa < thekuka@mixmail.com > (n/a) http://www.thekuka.com
+## 
+##############################################################
+# 
+#-----[ OPEN ]------------------------------------------------ 
+#
+language/lang_spanish/lang_admin.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ="Anuncio Global"; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+#
+language/lang_spanish/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_Globalannouncement'] = '<b>Anuncio Global:</b>'; 
+$lang['Post_global_announcement'] = "Anuncio Global"; 
+// End add - Global announcement MOD
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM

@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Italiano (Italian) 
+## Rev date:    13/12/2003
+##
+## Translator:  mercurio < mercurio@phpbbfm.it > (Antonio Mercurio) http://www.phpbbfm.it
+## 
+##############################################################
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_italian/lang_admin.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ="Annuncio Globale"; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_italian/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_Globalannouncement'] = '<b>Annuncio globale:</b>'; 
+$lang['Post_global_announcement'] = "Annuncio Globale"; 
+// End add - Global announcement MOD
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM

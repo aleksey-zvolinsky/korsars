@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+	<title>{$title|default:"КОРСАРЫ :: туристическая организация"}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+	<meta name="author" content="Зволинский Алексей" />
+	<meta name="generator" content="Hands" />
+	<meta name="keywords" content="корсары,корсар,корсарам,corsars,korsars,туризм,альпинизм,скалалазанье,korsari,corsari" />
+	<meta name="description" content="Туристический сайт киевской туристической групы Корсары" />
+	<meta name="robots" content="index, follow" />
+	<link rel="stylesheet" href="http://{$smarty.server.SERVER_NAME}/include/main.css" type="text/css" />
+</HEAD>
+<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0>
+		<center>
+			<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 id="MainTable" height="100%">
+				<TR>
+					<td width="25" valign="bottom"><IMG SRC="http://{$smarty.server.SERVER_NAME}/images/triangle02u.gif" WIDTH=25 ALT="Левый угол"></td>
+					<TD COLSPAN=3 bgcolor="#666699"><IMG SRC="http://{$smarty.server.SERVER_NAME}/images/triangle01.gif" WIDTH=192 HEIGHT=164 ALT="Верхний угол"></TD>
+					<TD bgcolor="#666699">
+						<div id="Header">
+							<table width="100%">
+								<tr><td align="right"><img src="http://{$smarty.server.SERVER_NAME}/images/texts_06.jpg" alt="" width="396" height="24" border="0"></td></tr>
+								<tr><td align="center"><img src="http://{$smarty.server.SERVER_NAME}/images/korsars.jpg" alt="" width="476" height="75" border="0"></td></tr>
+								<tr><td align="left"><img src="http://{$smarty.server.SERVER_NAME}/images/texts_03.jpg" alt="" width="387" height="21" border="0"></td></tr>
+							</table>
+						</div>
+					</TD>
+					<td bgcolor="#666699" width="10"></td>
+				</TR>
+				<TR>
+					<TD rowspan="5" WIDTH=25 valign="top"><IMG SRC="http://{$smarty.server.SERVER_NAME}/images/triangle02d.gif" WIDTH=25 height="44" ALT="Левый угол(низ)"></TD>
+					<TD rowspan="3" valign="top" bgcolor="#9999cc" width="192"><IMG SRC="http://{$smarty.server.SERVER_NAME}/images/triangle03.gif" WIDTH=154 HEIGHT=99 ALT="Низ треугольника"><IMG SRC="http://{$smarty.server.SERVER_NAME}/images/triangle04.gif" WIDTH=38 HEIGHT=34 ALT="Правый угол" align="top">
+						<div id="MainDetailedMenu"><a href="http://{$smarty.server.SERVER_NAME}/cms/"></a>{$MainDetailedMenu}</div>
+						<div id="ForumUser">{include_php file="inc_scr/forum_user.php"}</div>
+						<div id="LeftBanner">{include file="LeftBanner.tpl"}</div>
+					</TD>
+					<td rowspan="4" bgcolor="#9999cc" valign="top" width="10"></td>
+					<TD rowspan="4" colspan="2" bgcolor="#ddddee" valign="top" >
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+							<tr height="10">
+								<td valign="top" bgcolor="#9999cc" height="10">
+									<div id="ads"></div>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top">
+								<div id="Content">
+									{if $ContentId!=''}
+										<div id="{$ContentId}">
+									{/if}
+									{if $ContentText!=''}
+										{$ContentText}
+									{elseif $ContentTemplate!=''}
+										{include file="$ContentTemplate"}
+									{else}
+										{include file="InWork.tpl"}
+									{/if}
+									{if $ContentId!=''}
+										</div>
+									{/if}
+								</div>
+								</td>
+							</tr>
+						</table>
+					</TD>
+					<TD rowspan="4" bgcolor="#9999cc" width="10"></TD>
+				</TR>
+				<tr>
+
+				</tr>
+				<TR>
+
+				</TR>
+				<TR>
+					<td valign="top" bgcolor="#9999cc" width="192">
+						<div id="MainDetailedMenu"></div>
+						<div id="ForumUser"></div>
+					</td>
+				</TR>
+				<TR>
+					<td colspan="5" valign="bottom" align="center" bgcolor="#9999cc">
+						<table width="100%" cellspacing="2" cellpadding="0">
+							<tr>
+								<td>
+									<div align="right" id="Copyright">
+										Все права защищены законом, а если кому не нравиться, то якорь Вам в зад.<br>
+										Если Вы решили украсть информацию с сайта, то не забудьте указать откуда свиснули, ибо Посейдон накажет тебя.
+									</div>
+								</td>
+								<td align="right">
+									<img src="http://{$smarty.server.SERVER_NAME}/images/anchor.jpg" alt="" height="79" width="100" border="0">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									{$AdminLink}
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									<div id="BottomBanner">{include file="BottomBanner.tpl"}</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</TR>
+			</TABLE>
+		</center>
+	</BODY>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2797530-2";
+urchinTracker();
+</script>	
+</HTML>

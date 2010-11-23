@@ -1,0 +1,90 @@
+###############################################
+## Mod Title:     Show Member of in memberlist 
+## Mod Version:   1.3.5
+## Author:        Niels Chr. Denmark < ncr@db9.dk > (Niels Chr. Rød) HTTP://mods.db9.dk
+##
+###############################################
+## This MOD is released under the GPL License. 
+## Intellectual Property is retained by the MOD Author(s) listed above 
+###############################################
+
+
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+memberlist.php
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+include($phpbb_root_path . 'common.'.$phpEx);
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+include($phpbb_root_path . 'includes/functions_usergroup.'.$phpEx);
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+'L_SELECT_SORT_METHOD' => $lang['Select_sort_method'], 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+'L_USER_GROUP' =>$lang['Usergroups'],
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+$i++;
+
+# 
+#-----[ BEFORE, ADD ]------------------------------------------ 
+# 
+if (!display_usergroups($userdata['user_id'],$user_id,'memberrow','show_usergroup_image_only'))
+{
+	$template->append_block_vars('memberrow',array(
+	'L_NO_USERGROUPS'=> $lang['None']));
+} 
+
+			
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+templates/subSilver/memberlist_body.tpl
+
+# 
+#-----[ FIND ]------------------------------------------ 
+#
+	  <th class="thTop" nowrap="nowrap">{L_EMAIL}</th>
+		
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+	  <th class="thTop" nowrap="nowrap">{L_USER_GROUP}</th>
+
+# 
+#-----[ FIND ]------------------------------------------ 
+#		
+	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle">&nbsp;{memberrow.EMAIL_IMG}&nbsp;</td>
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+	  <td class="{memberrow.ROW_CLASS}" align="center">{memberrow.SHOW_USERGROUPS}{memberrow.L_NO_USERGROUPS}</td>
+
+# 
+#-----[ FIND ]------------------------------------------ 
+#		
+	  <td class="catBottom" colspan="9" height="28">&nbsp;</td>
+		
+# 
+#-----[ REPLACE WITH ]------------------------------------------ 
+#
+	  <td class="catbottom" colspan="9" height="28">&nbsp;</td>
+		
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM

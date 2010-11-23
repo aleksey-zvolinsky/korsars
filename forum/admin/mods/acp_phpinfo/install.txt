@@ -1,0 +1,62 @@
+## easymod compliant
+########################################################################################################
+## MOD Title: ACP - PHP Server Settings - phpinfo()
+## MOD Author: AbelaJohnB < abela@johnabela.com > (John B. Abela) http://www.johnabela.com/mods/
+## MOD Description: This MOD will allow you to have the PHP Function "phpinfo()" build directly into
+##                  your Admin Control Panel (ACP). This MOD will place a new link within the
+##                  "General Admin" section of your ACP navigation panel.
+## MOD Version: 1.0.0
+##
+## Installation Level: Easy
+## Installation Time: ~5 minutes
+## Files To Edit:  N/A
+##
+## Included Files:
+##              admin/mod_phpinfo.php
+##              templates/subSilver/admin/mod_phpinfo.tpl
+########################################################################################################
+## Author Notes:
+## Copyright © John B. Abela, < abela@johnabela.com >
+##
+## I do not support my MOD's anywhere except at http://www.johnabela.com/mods/ so please
+## visit there for support. If you intend to take my work and modify it, you must retain my above
+## Copyright within any install file. This does not mean you have to ask me to -use- this MOD,
+## but that does mean you cannot -distribute- this MOD, in modified or non-modified format,
+## without my copyright left intact. Contact me at: abela@johnabela.com - www.JohnAbela.Com
+##
+## This MOD, like all phpBB MOD's, is released under the GNU/GPL License. A copy of this license
+## should have been included with the distribution package that included this install.txt file.
+## If it was not, chances are you are using a version of this MOD that very likely has been edited
+## by someone other than myself, and thus, perhaps, a greater security risk to you.
+## 
+##   While this is nothing new (I've seen at least 3 or 4 other versions out there) this is the only
+##   one  to be "template friendly" (so far as I've ever seen) however, even that is a stretch.
+##   This particular PHP Function is difficult to make cosmetically pretty. If you happen to like this
+##   version, use it. If not, use any of the other like MOD's that folks have already written.
+## 
+## Possible Future Plans:  None
+##
+## ~ John B. Abela - (aka: AbelaJohnB) http://www.johnabela.com/mods/  - abela@johnabela.com
+##   Stop By And Say Hello If You Feel Like It :)
+##   I maintain a "Mailing Group" for email notification of any new/updated MOD's. Just stop by my
+##   forum, register, than join the Group within the Usersgroup section of my MOD Forums!
+########################################################################################################
+## MOD History:
+##
+##   2005-01-04 - Version 1.0.0
+##      - Initial Release (for phpBB 2.0.11)
+##        
+########################################################################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+########################################################################################################
+
+# 
+#-----[ COPY ]------------------------------------------ 
+# 
+copy admin/admin_phpinfo.php to admin/admin_phpinfo.php
+copy templates/subSilver/admin/admin_phpinfo.tpl to templates/subSilver/admin/admin_phpinfo.tpl
+
+
+#
+#-----[  SAVE/CLOSE ALL FILES ]------------------------------------------
+#EoM

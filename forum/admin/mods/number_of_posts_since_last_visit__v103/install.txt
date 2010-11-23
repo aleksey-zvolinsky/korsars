@@ -1,0 +1,97 @@
+## easymod compliant
+########################################################################################################
+## MOD Title: Number of Posts Since Last Visit
+## MOD Author: AbelaJohnB <abela@johnabela.com> (John B. Abela) http://www.JohnAbela.Com/
+## MOD Author, Secondary: mitsubishi <mitsubishiuk@aol.com> (Adam Ismay) http://www.boardz.tk/ 
+## MOD Author, Secondary: N/A <mac@kingoftheserver.com> (Iain Staffell) http://mb.kingoftheserver.com
+## MOD Description: This MOD will add the number of new posts on the index page to view new posts.
+## Total number of posts remains until your session expires or you log-out. 
+##
+## MOD Version: 1.0.3
+##
+## Installation Level: Easy
+## Installation Time: ~2 minutes
+## Files To Edit: 
+##              index.php
+##
+## Included Files:
+##              N/A
+########################################################################################################
+## Author Notes:
+## Copyright © John B. Abela, < abela@johnabela.com >
+##
+## I do not support my MOD's anywhere except at http://www.johnabela.com/mods/ so please
+## visit there for support. If you intend to take my work and modify it, you must retain my above
+## Copyright within any install file. This does not mean you have to ask me to -use- this MOD,
+## but that does mean you cannot -distribute- this MOD, in modified or non-modified format,
+## without my copyright left intact. Contact me at: abela@johnabela.com - www.JohnAbela.Com
+##
+## This MOD, like all phpBB MOD's, is released under the GNU/GPL License. A copy of this license
+## should have been included with the distribution package that included this install.txt file.
+## If it was not, chances are you are using a version of this MOD that very likely has been edited
+## by someone other than myself, and thus, perhaps, a greater security risk to you.
+## 
+## Possible Future Plans:  None
+##
+## ~ John B. Abela - (aka: AbelaJohnB) http://www.johnabela.com/mods/  - abela@johnabela.com
+##   Stop By And Say Hello If You Feel Like It :)
+##   I maintain a "Mailing Group" for email notification of any new/updated MOD's. Just stop by my
+##   forum, register, than join the Group within the Usersgroup section of my MOD Forums!
+########################################################################################################
+## MOD History:
+##
+##   2005-01-03 - Version 1.0.3
+##      - Updated For phpBB 2.0.11
+## 
+##   2003-9-19 - Version 1.0.2
+##      - Updated For phpBB 2.0.6 <abela@johnabela.com>
+## 
+##   2003-05-24 - Version 1.0.1 
+##      - your own posts are no longer counted <mac@kingoftheserver.com>
+## 
+##   2002-04-08 - Version 1.0.0 
+##      - original for phpBB 2.03 <mitsubishiuk@aol.com>
+## 
+########################################################################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD 
+########################################################################################################
+
+# 
+#-----[ OPEN ]------------------------------------- 
+# 
+index.php 
+
+# 
+#-----[ FIND ]------------------------------------- 
+# 
+// 
+// End session management
+// 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------- 
+# 
+//
+// MOD START - NUMBER OF NEW POSTS - AbelaJohnB
+//
+if( $userdata['session_logged_in'] ) 
+{ 
+	$sql = "SELECT COUNT(post_id) as total 
+		FROM " . POSTS_TABLE . " 
+		WHERE post_time >= " . $userdata['user_lastvisit'] . " 
+		AND poster_id != " . $userdata['user_id']; 
+
+	$result = $db->sql_query($sql); 
+	if( $result ) 
+	{ 
+		$row = $db->sql_fetchrow($result); 
+		$lang['Search_new'] = $lang['Search_new'] . " (" . $row['total'] . ")"; 
+	}
+} 
+//
+// MOD END - NUMBER OF NEW POSTS - AbelaJohnB
+//
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM 

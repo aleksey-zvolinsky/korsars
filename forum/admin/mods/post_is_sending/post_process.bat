@@ -1,0 +1,12 @@
+copy ..\..\..\posting.php backups\posting.php.txt
+copy processed\posting.php.txt ..\..\..\posting.php
+copy ..\..\..\privmsg.php backups\privmsg.php.txt
+copy processed\privmsg.php.txt ..\..\..\privmsg.php
+copy ..\..\..\language\lang_english\lang_main.php backups\language\lang_english\lang_main.php.txt
+copy processed\language\lang_english\lang_main.php.txt ..\..\..\language\lang_english\lang_main.php
+copy ..\..\..\language\lang_russian\lang_main.php backups\language\lang_russian\lang_main.php.txt
+copy processed\language\lang_russian\lang_main.php.txt ..\..\..\language\lang_russian\lang_main.php
+copy ..\..\..\language\lang_russian\lang_main.php backups\language\lang_russian\lang_main.php.txt
+copy processed\language\lang_russian\lang_main.php.txt ..\..\..\language\lang_russian\lang_main.php
+copy ..\..\..\templates\subSilver\posting_body.tpl backups\templates\subSilver\posting_body.tpl.txt
+copy processed\templates\subSilver\posting_body.tpl.txt ..\..\..\templates\subSilver\posting_body.tpl

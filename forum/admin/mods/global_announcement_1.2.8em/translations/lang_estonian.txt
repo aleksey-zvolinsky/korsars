@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Eesti (Estonian) 
+## Rev date:    13/12/2003
+##
+## Translator:  kenny < qs_kenny@msn.com > (Kirill Milovidov) http://kdg.fm.pri.ee
+## 
+##############################################################
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_estonian/lang_admin.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+#  
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ='Globaalne teadaanne'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_estonian/lang_main.php 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+#  
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_global_announcement']='<b>Globaalne teadaanne:</b>'; 
+$lang['Post_global_announcement'] = 'Globaalne teadaanne'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM

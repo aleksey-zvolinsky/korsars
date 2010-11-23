@@ -1,0 +1,11 @@
+cp watched_topics.php ../../../watched_topics.php
+cp templates/subSilver/watched_topics_body.tpl ../../../templates/subSilver/watched_topics_body.tpl
+cp templates/subSilver/images/icon_mini_watch.gif ../../../templates/subSilver/images/icon_mini_watch.gif
+cp ../../../includes/page_header.php backups/includes/page_header.php.txt
+cp processed/includes/page_header.php.txt ../../../includes/page_header.php
+cp ../../../language/lang_english/lang_main.php backups/language/lang_english/lang_main.php.txt
+cp processed/language/lang_english/lang_main.php.txt ../../../language/lang_english/lang_main.php
+cp ../../../language/lang_russian/lang_main.php backups/language/lang_russian/lang_main.php.txt
+cp processed/language/lang_russian/lang_main.php.txt ../../../language/lang_russian/lang_main.php
+cp ../../../templates/subSilver/overall_header.tpl backups/templates/subSilver/overall_header.tpl.txt
+cp processed/templates/subSilver/overall_header.tpl.txt ../../../templates/subSilver/overall_header.tpl

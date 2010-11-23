@@ -1,0 +1,11 @@
+copy watched_topics.php ..\..\..\watched_topics.php
+copy templates\subSilver\watched_topics_body.tpl ..\..\..\templates\subSilver\watched_topics_body.tpl
+copy templates\subSilver\images\icon_mini_watch.gif ..\..\..\templates\subSilver\images\icon_mini_watch.gif
+copy ..\..\..\includes\page_header.php backups\includes\page_header.php.txt
+copy processed\includes\page_header.php.txt ..\..\..\includes\page_header.php
+copy ..\..\..\language\lang_english\lang_main.php backups\language\lang_english\lang_main.php.txt
+copy processed\language\lang_english\lang_main.php.txt ..\..\..\language\lang_english\lang_main.php
+copy ..\..\..\language\lang_russian\lang_main.php backups\language\lang_russian\lang_main.php.txt
+copy processed\language\lang_russian\lang_main.php.txt ..\..\..\language\lang_russian\lang_main.php
+copy ..\..\..\templates\subSilver\overall_header.tpl backups\templates\subSilver\overall_header.tpl.txt
+copy processed\templates\subSilver\overall_header.tpl.txt ..\..\..\templates\subSilver\overall_header.tpl

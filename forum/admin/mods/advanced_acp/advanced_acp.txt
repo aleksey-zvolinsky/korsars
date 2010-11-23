@@ -1,0 +1,176 @@
+##############################################################
+## MOD Title: Advanced ACP
+## MOD Author: CBACK < webmaster@cback.de > (Christian Knerr) http://www.cback.de
+## MOD Description:  This MOD replaces the normal ACP View with a new, modern layout and adds some new 
+##                   functions.
+## MOD Version: 1.0.0
+##
+## Installation Level: Intermediate
+## Installation Time: 8 Minutes
+## Files To Edit: 4
+##                admin/index.php
+##                language/lang_english/lang_admin.php
+##                language/lang_german/lang_admin.php
+##                templates/subSilver/subSilver.cfg
+## Included Files: admin_advanced.php
+##                 admin_advanced.tpl
+##                 admin_adv_pinfo.tpl
+##                 admin_adv_stat.tpl
+##                 admin_adv_whois.tpl
+##                 aacp_k1.gif
+##                 aacp_k2.gif
+##                 aacp_k3.gif
+##                 aacp_k4.gif
+##############################################################
+## For Security Purposes, Please Check: http://www.phpbb.com/mods/downloads/ for the
+## latest version of this MOD. Downloading this MOD from other sites could cause malicious code
+## to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered
+## in our MOD-Database, located at: http://www.phpbb.com/mods/downloads/
+##############################################################
+## MOD History:
+##
+##   2005-01-02 - Version 1.0.0
+##	- First version of this MOD
+##
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+#
+#-----[ COPY ]------------------------------------------
+#
+copy admin/admin_advanced.php to admin/admin_advanced.php
+copy templates/subSilver/admin/admin_advanced.tpl to templates/subSilver/admin/admin_advanced.tpl
+copy templates/subSilver/admin/admin_adv_pinfo.tpl to templates/subSilver/admin/admin_adv_pinfo.tpl
+copy templates/subSilver/admin/admin_adv_stat.tpl to templates/subSilver/admin/admin_adv_stat.tpl
+copy templates/subSilver/admin/admin_adv_whois.tpl to templates/subSilver/admin/admin_adv_whois.tpl
+copy templates/subSilver/images/aacp_k1.gif to templates/subSilver/images/aacp_k1.gif
+copy templates/subSilver/images/aacp_k2.gif to templates/subSilver/images/aacp_k2.gif
+copy templates/subSilver/images/aacp_k3.gif to templates/subSilver/images/aacp_k3.gif
+copy templates/subSilver/images/aacp_k4.gif to templates/subSilver/images/aacp_k4.gif
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+language/lang_english/lang_admin.php
+
+
+#
+#-----[ FIND ]------------------------------------------
+#
+// That's all Folks!
+
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+//
+// Begin: www.cback.de Advanced ACP
+//
+// Navigationselemente
+$lang['aacp_mod1'] = 'AACP Index';
+$lang['aacp_class'] = 'Classic ACP';
+$lang['aacp_who'] = 'Who is online?';
+$lang['aacp_stat'] = 'Board-Statistics';
+$lang['aacp_phpinfo'] = 'PHP Info';
+
+// Überschriften
+$lang['aacp_header1'] = 'CBACK Advanced Admin Panel';
+$lang['aacp_header2'] = 'Classical ACP';
+$lang['aacp_header3'] = 'Who is online?';
+$lang['aacp_header4'] = 'Board Statistics';
+$lang['aacp_header5'] = 'PHP Info';
+
+// Kategoriebeschreibungen
+$lang['aacp_body1'] = 'Welcome into the new Advanced ACP! Here you can see the new Admin-Index wich provides a better management of very important Forum-Functions..';
+$lang['aacp_body2'] = 'This is the classical ACP';
+$lang['aacp_body3'] = 'In this page you can see who is online now. You can trace the IPs and you can view and configure the profile of a registered User, showed in this list.';
+$lang['aacp_body4'] = 'Here you can see the statistic of your forum. How many memory is used, how many registered users, etc.';
+$lang['aacp_body5'] = 'Here you can see infos about your WebServer Configuration. This is important for example if you ask for Support in a phpBB Support Forum.';
+
+// Navigationskategorien
+$lang['aacp_kat1'] = 'User-Management';
+$lang['aacp_kat2'] = 'Board Utilities';
+$lang['aacp_kat3'] = 'Layout and Posting';
+$lang['aacp_kat4'] = 'Advanced ACP';
+
+// AACP Link-Beschreibungen
+$lang['aacp_kat1_n1'] = 'Ban';
+$lang['aacp_kat1_n2'] = 'Permissions';
+$lang['aacp_kat1_n3'] = 'Edit Profiles';
+$lang['aacp_kat1_n4'] = 'Manage UserGroups';
+$lang['aacp_kat1_n5'] = 'UserGroup Permissions';
+
+$lang['aacp_kat2_n1'] = 'General Configuration';
+$lang['aacp_kat2_n2'] = 'Manage Forums';
+$lang['aacp_kat2_n3'] = 'Configure Forum Permissions';
+$lang['aacp_kat2_n4'] = 'Show Board Index';
+
+$lang['aacp_kat3_n1'] = 'Manage Ranks';
+$lang['aacp_kat3_n2'] = 'Manage Smilies';
+$lang['aacp_kat3_n3'] = 'Install Styles';
+$lang['aacp_kat3_n4'] = 'Manage Styles';
+
+$lang['aacp_kat4_n1'] = 'show classical ACP';
+$lang['aacp_kat4_n2'] = 'Who is online?';
+$lang['aacp_kat4_n3'] = 'Board-Statistics';
+$lang['aacp_kat4_n4'] = 'PHP Info';
+//
+// End: Advanced ACP
+//
+
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+admin/index.php
+
+
+#
+#-----[ FIND ]------------------------------------------
+#
+"U_ADMIN_INDEX" => append_sid("index.$phpEx?pane=right"),
+
+
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+"U_ADMIN_INDEX" => append_sid("admin_advanced.$phpEx?panel=aacp"),
+
+
+#
+#-----[ FIND ]------------------------------------------
+#
+"S_FRAME_MAIN" => append_sid("index.$phpEx?pane=right"))
+
+
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+"S_FRAME_MAIN" => append_sid("admin_advanced.$phpEx?panel=aacp"))
+
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+templates/subSilver/subSilver.cfg
+
+
+#
+#-----[ FIND ]------------------------------------------
+#
+$images['icon_quote'] = "$current_template_images/{LANG}/icon_quote.gif";
+
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+$images['aacp_k1'] = "$current_template_images/aacp_k1.gif";
+$images['aacp_k2'] = "$current_template_images/aacp_k2.gif";
+$images['aacp_k3'] = "$current_template_images/aacp_k3.gif";
+$images['aacp_k4'] = "$current_template_images/aacp_k4.gif";
+
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM

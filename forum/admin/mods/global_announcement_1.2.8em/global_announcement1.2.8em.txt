@@ -1,0 +1,959 @@
+############################################################## 
+## MOD Title:          Global announcement 
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk 
+## MOD Description:    This mod, makes it posible to post global
+##                     announcements viewable in all forums.
+## MOD Version:        1.2.8
+## MOD Compatibility:  2.0.6
+## 
+## Installation Level: Intermediate
+## Installation Time:  15 Minutes (1mn by EasyMOD of Nuttzy)
+## Files To Edit:      14
+##      index.php
+##      modcp.php
+##      posting.php 
+##      search.php 
+##      viewforum.php 
+##      admin/admin_forumauth.php 
+##      admin/admin_ug_auth.php 
+##      includes/auth.php
+##      includes/constants.php 
+##      includes/functions.php
+##      language/lang_english/lang_admin.php 
+##      language/lang_english/lang_main.php 
+##      templates/subSilver/subSilver.cfg 
+##      templates/subSilver/viewforum_body.tpl
+##
+## Included Files:     3
+##      global_announcement_db_update.php
+##      root/templates/subSilver/images/folder_global_announce.gif
+##      root/templates/subSilver/images/folder_global_announce_new.gif
+##
+############################################################## 
+## For Security Purposes, Please Check: http://www.phpbb.com/mods/ for the 
+## latest version of this MOD. Downloading this MOD from other sites could cause malicious code 
+## to enter into your phpBB Forum. As such, phpBB will not offer support for MOD's not offered 
+## in our MOD-Database, located at: http://www.phpbb.com/mods/ 
+############################################################## 
+## Author Notes: 
+## 
+## 1. Full MOD description
+## -----------
+## This mod, makes it posible to post global announcements
+## viewable in all forums, it suppport auth level, witch means
+## you can define in forum permissions, who have right to post
+## global announcements, note though that if you have given
+## this rights in one forum, then it gives no meaning to restrict
+## it to the same user(s) in another forum - the post is global
+## Note also that once a global announcement is posted, the
+## permission on the topic, will be the same as that forum
+## where it is initially posted, this is useful if you wan to
+## restrict your users from replying - solution is to post the
+## global announcement inside a forum where the users can not
+## reply, the subject of the global announcement will though
+## always be visible, even though the user have no rigths , it
+## is first when they try to view the topic, that the permission
+## in the original forum takes over.
+## There is a known isue this this mod, a global announcement
+## will still "belong" to the forum where it original was posted,
+## this means that if a user reply to sutch a post, then they will
+## be redirected to that forum, nothing to do about that, also
+## when using search, it will be displayed "as" in the original
+## posted forum.
+## If you wish to assign special rigths to the global announcement,
+## then you may costumice the constants.php , change the value of
+## HIDDEN_CAT witch a category id,. This category is hidden to all
+## except ADMIN inside this category, make a forum with a empty
+## name, and post the global announcement here that way preventing
+## the users to se the forum, where the global announcement is posted
+## make this forum "view_auth" ALL and "read_auth" ALL, all
+## other settings are up to you (in current version of phpbb2,
+## you can't create a forum without a name, but you can
+## change/delete the name after it is created ! )
+##
+## 2. EasyMOD
+## -----------
+## This MOD is compatible and can be installed by EasyMOD
+## of Nuttzy (but is not officially EasyMOD Compliant)!
+## http://area51.phpbb.com/phpBB22/viewforum.php?sid=&f=15
+##
+## However, on alpha releases of EM and meanwhile beta or 
+## final release some actions are NOT performed.
+## You'll have to do them manually !
+##
+## 2.1 SQL commands are not performed
+## -----------
+## This MOD need a database update.
+## Then, in any case if you install this MOD manually or using
+## an alpha release of EM, please copying the *_db_update.php
+## in your phpBB root directory, run it with your navigator,
+## and then delete it from the phpBB root directory.
+##
+## Please, do it NOW! Before editing phpBB files by EM or manually!!!
+## Otherwise, you may have an error message during your next
+## connection.
+##
+## 2.2 Translation are not managed
+## -----------
+## Moreover, EM can not already manage actions for any other
+## language than English (but language intructions are proceed
+## to all installed languages in order to prevent errors).
+## So the translations provided with this MOD must be installed
+## manually if you need them.
+##
+## 3. Official last version link
+## -----------
+## Meanwhile the phpBB group validation and as the MOD is not yet
+## in the phpBB MOD database, check this official link for updates...
+## http://mods.db9.dk/viewtopic.php?t=17
+##
+############################################################## 
+## MOD History: 
+## 
+##   2003-12-13 - Version 1.2.8
+##      - phpBB template & EasyMOD compliance enhancement
+##      - Chinese Traditional Taiwan, Dutch, Estonian, French,
+##        German, Hungarian, Icelandic, Italian, Lithuanian
+##        Polish & Spanish translations now provide with the MOD
+## 
+##   2003-08-05 - Version 1.2.7
+##      - corrected the how-to header
+## 
+##   ????-??-?? - Version 1.2.6
+##      - corrected some problem in the how-to related to EM - if other mods was installed
+##      - posting.php updated, as the code hade changed slightly
+## 
+##   ????-??-?? - Version 1.2.5
+##        - verifyed for 2.0.6. and EM ready
+## 
+##   ????-??-?? - Version 1.2.4
+##        - improved the code into search.php thanks to the user "FX"
+## 
+##   ????-??-?? - Version 1.2.3
+##        - includes images for "fi apple" template
+## 
+##   ????-??-?? - Version 1.2.2
+##        - fixed that the "hidden" cattegory "global_announcement" was showen in drop-down box
+## 
+##   ????-??-?? - Version 1.2.1
+##        - folder URL of folder_global_announce_new.gif was wrong
+## 
+##   ????-??-?? - Version 1.2.0
+##        - now confirmed on phpBB2 ver 2.0.2, minor changes needed
+## 
+##   ????-??-?? - Version 1.0.7
+##        - makes it posible to make a hidden category, so global announcement can be controlled more exact	
+## 
+##   ????-??-?? - Version 1.0.6
+##        - one more typo fixed in the admin_ug_auth.php
+## 
+##   ????-??-?? - Version 1.0.5
+##        - History started, fixed a error in admin_ug_auth.php
+## 
+##   ????-??-?? - Version 1.0.0
+##        - initial release
+## 
+##   ????-??-?? - Version 0.9.0
+##        - initial beta
+##
+############################################################## 
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD 
+############################################################## 
+# 
+#-----[ COPY ]------------------------------------------------ 
+# 
+copy global_announcement_db_update.php to global_announcement_db_update.php
+copy root/templates/subSilver/images/folder_global_announce.gif to templates/subSilver/images/folder_global_announce.gif
+copy root/templates/subSilver/images/folder_global_announce_new.gif to templates/subSilver/images/folder_global_announce_new.gif
+
+#
+# This MOD need a database update.
+# Then, as you must have now copied the global_announcement_db_update.php file
+# in your phpBB root directory, run it with your navigator...
+# http://www.yourWebSite.xxx/phpbbRootDir/global_announcement_db_update.php
+#
+# ...and then delete it from the phpBB root directory!!!
+#
+# Please, do it NOW! Before editing phpBB files by EM or manually!!!
+# Otherwise, you may have an error message during your next
+# connection.
+#
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+index.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+FROM " . CATEGORIES_TABLE . " c
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+	".(($userdata['user_level']!=ADMIN)? "WHERE c.cat_id<>'".HIDDEN_CAT."'" :"" )."
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+modcp.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+if ( $row['topic_type'] == POST_ANNOUNCE ) 
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+if ( $row['topic_type'] == POST_GLOBAL_ANNOUNCE ) 
+{ 
+   $folder_img = $images['folder_global_announce']; 
+   $folder_alt = $lang['Global_announcement']; 
+}else 
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+if ( $topic_type == POST_ANNOUNCE ) 
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+if ( $topic_type == POST_GLOBAL_ANNOUNCE ) 
+{ 
+   $topic_type = $lang['Topic_global_announcement'] . ' '; 
+}else 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+posting.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+if ( $topic_type == POST_ANNOUNCE )
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+if ( $topic_type == POST_GLOBAL_ANNOUNCE ) 
+{
+$is_auth_type = 'auth_globalannounce'; 
+}
+else 
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$topic_type = ( $topic_type != $post_data['topic_type'] && !$is_auth['auth_sticky'] && !$is_auth['auth_announce'] ) ? $post_data['topic_type'] : $topic_type;
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+)
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+ && !$is_auth['auth_globalannounce'] 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+   $topic_type_toggle .= ' /> ' . $lang['Post_Announcement'] . '&nbsp;&nbsp;'; 
+} 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------
+#
+
+// Start add - Global announcement MOD
+if( $is_auth['auth_globalannounce'] ) 
+{ 
+   $topic_type_toggle .= '<input type="radio" name="topictype" value="' . POST_GLOBAL_ANNOUNCE . '"'; 
+   if ( $post_data['topic_type'] == POST_GLOBAL_ANNOUNCE || $topic_type == POST_GLOBAL_ANNOUNCE ) 
+
+   if ( $post_data['topic_type'] == POST_GLOBAL_ANNOUNCE ) 
+   { 
+      $topic_type_toggle .= ' checked="checked"'; 
+   } 
+   $topic_type_toggle .= ' /> ' . $lang['Post_global_announcement'] . '&nbsp;&nbsp;'; 
+} 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+search.php
+ 
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+if ($topic_type == POST_ANNOUNCE)
+{
+	$topic_type = 
+}
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+if($topic_type == POST_GLOBAL_ANNOUNCE ) 
+{ 
+   $topic_type = $lang['Topic_global_announcement'] . " "; 
+} else
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+else if ( $searchset[$i]['topic_type'] == POST_ANNOUNCE )
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+else if ( $searchset[$i]['topic_type'] == POST_GLOBAL_ANNOUNCE  ) 
+{ 
+   $folder =  $images['folder_global_announce']; 
+   $folder_new = $images['folder_global_announce_new']; 
+} 
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$sql = "SELECT c.cat_title, c.cat_id, f.forum_name, f.forum_id  
+	FROM " . CATEGORIES_TABLE . " c, " . FORUMS_TABLE . " f
+	WHERE f.cat_id = c.cat_id
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------
+#
+	".(($userdata['user_level'] == ADMIN)? "" : " AND c.cat_id<>'".HIDDEN_CAT."'" )."
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+viewforum.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+// 
+// All announcement data, this keeps announcements 
+// on each viewforum page ... 
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// 
+// All GLOBAL announcement data, this keeps GLOBAL announcements 
+// on each viewforum page ... 
+// 
+$sql = "SELECT t.*, u.username, u.user_id, u2.username as user2, u2.user_id as id2, p.post_time, p.post_username 
+   FROM " . TOPICS_TABLE . " t, " . USERS_TABLE . " u, " . POSTS_TABLE . " p, " . USERS_TABLE . " u2 
+   WHERE t.topic_poster = u.user_id 
+      AND p.post_id = t.topic_last_post_id 
+      AND p.poster_id = u2.user_id 
+      AND t.topic_type = " . POST_GLOBAL_ANNOUNCE . " 
+   ORDER BY t.topic_last_post_id DESC "; 
+if( !$result = $db->sql_query($sql) ) 
+{ 
+   message_die(GENERAL_ERROR, "Couldn't obtain topic information", "", __LINE__, __FILE__, $sql); 
+} 
+
+$topic_rowset = array(); 
+$total_announcements = 0; 
+while( $row = $db->sql_fetchrow($result) ) 
+{ 
+   $topic_rowset[] = $row; 
+   $total_announcements++; 
+} 
+
+$db->sql_freeresult($result); 
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$topic_rowset = array();
+$total_announcements = 0;
+
+# 
+#-----[ REPLACE WITH ]---------------------------------------- 
+# 
+
+// 2 rows deleted - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+		AND t.topic_type <> " . POST_ANNOUNCE . " 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------
+#
+		AND t.topic_type <> " . POST_GLOBAL_ANNOUNCE . " 
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+'FOLDER_ANNOUNCE_NEW_IMG' => $images['folder_announce_new'],
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+
+// Start add - Global announcement MOD
+'FOLDER_GLOBAL_ANNOUNCE_IMG' => $images['folder_global_announce'],
+'FOLDER_GLOBAL_ANNOUNCE_NEW_IMG' => $images['folder_global_announce_new'],
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+'L_ANNOUNCEMENT' => $lang['Post_Announcement'], 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+
+// Start add - Global announcement MOD
+'L_GLOBAL_ANNOUNCEMENT' => $lang['Post_global_announcement'], 
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+if( $topic_type == POST_ANNOUNCE ) 
+{ 
+	$topic_type = $lang['Topic_Announcement'] . ' ';
+} 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+
+// Start add - Global announcement MOD
+else if( $topic_type == POST_GLOBAL_ANNOUNCE ) 
+{ 
+   $topic_type = $lang['Topic_global_announcement'] . ' '; 
+} 
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+if( $topic_rowset[$i]['topic_type'] == POST_ANNOUNCE ) 
+{ 
+   $folder = $images['folder_announce']; 
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+if( $topic_rowset[$i]['topic_type'] == POST_GLOBAL_ANNOUNCE ) 
+{ 
+	$folder = $images['folder_global_announce']; 
+	$folder_new = $images['folder_global_announce_new']; 
+} 
+else 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+admin/admin_forumauth.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+//                View      Read      Post      Reply     Edit     Delete    Sticky   Announce    Vote      Poll
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+
+// Globalannounce added
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$simple_auth_ary = array(
+0  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+1  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+2  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+3  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+4  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+5  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+6  => array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+),
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, AUTH_MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$forum_auth_fields = array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+);
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, 'auth_globalannounce'
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+']);
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+);
+
+# 
+#-----[ IN-LINE REPLACE WITH ]-------------------------------- 
+#
+,
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+
+// Start add - Global announcement MOD
+'auth_globalannounce' => $lang['Globalannounce']);
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+admin/admin_ug_auth.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$forum_auth_fields = array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+);
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+#
+, 'auth_globalannounce'
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+'auth_announce' => AUTH_ANNOUNCE, 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+);
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+);
+
+# 
+#-----[ IN-LINE REPLACE WITH ]-------------------------------- 
+#
+,
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+
+// Start add - Global announcement MOD
+'auth_globalannounce' => AUTH_GLOBALANNOUNCE);
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+']);
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+);
+
+# 
+#-----[ IN-LINE REPLACE WITH ]-------------------------------- 
+#
+,
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+
+// Start add - Global announcement MOD
+'auth_globalannounce' => $lang['Globalannounce']);
+// End add - Global announcement MOD
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+SET auth_view = 0,
+WHERE
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+ WHERE
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, auth_globalannounce = 0 
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+SET auth_view = 0,
+WHERE
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+ WHERE
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, auth_globalannounce = 0 
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+includes/auth.php
+ 
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+case AUTH_ALL:
+$a_sql = '
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+';
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, a.auth_globalannounce
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$auth_fields = array(
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+);
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, 'auth_globalannounce'
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+default:
+break;
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+case AUTH_GLOBALANNOUNCE: 
+$a_sql = 'a.auth_globalannounce'; 
+$auth_fields = array('auth_globalannounce'); 
+break; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+includes/constants.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+define('AUTH_ATTACH', 11); 
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+
+// Start add - Global announcement MOD
+define('AUTH_GLOBALANNOUNCE', 12); 
+define('HIDDEN_CAT', 0); // NOTE: change this value to the forum id, of the forum, witch you would like to be hidden
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+includes/functions.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+function make_jumpbox
+{
+	global
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------- 
+# 
+;
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]--------------------------------- 
+# 
+, $userdata
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$sql = "SELECT 
+FROM " . CATEGORIES_TABLE . " c, " . FORUMS_TABLE . " f
+WHERE f.cat_id = c.cat_id
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+		".(($userdata['user_level'] == ADMIN)? "" : " AND c.cat_id<>'".HIDDEN_CAT."'" )."
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_english/lang_admin.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ='Global Announce'; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+#
+language/lang_english/lang_main.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_global_announcement']='<b>Global Announcement:</b>'; 
+$lang['Post_global_announcement'] = 'Global Announcement';
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+# Remember to do this to all instaled template on the board
+#
+templates/subSilver/subSilver.cfg
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+$images['folder_announce_new'] = "$current_template_images/folder_announce_new.gif";
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+
+// Start add - Global announcement MOD
+$images['folder_global_announce'] = "$current_template_images/folder_global_announce.gif";
+$images['folder_global_announce_new'] = "$current_template_images/folder_global_announce_new.gif";
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+# Remember to do this to all instaled template on the board
+#
+templates/subSilver/viewforum_body.tpl
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+<td width="20" align="center"><img src="{FOLDER_ANNOUNCE_IMG}" alt="{L_ANNOUNCEMENT}" width="19" height="18" /></td>
+<td class="gensmall">{L_ANNOUNCEMENT}</td>
+
+# 
+#-----[ REPLACE WITH ]---------------------------------------- 
+# 
+
+<!-- Start replacement - Global announcement MOD -->
+<td width="20" align="center"><img src="{FOLDER_GLOBAL_ANNOUNCE_IMG}" alt="{L_GLOBAL_ANNOUNCEMENT}" width="19" height="18" /></td>
+<td class="gensmall">{L_GLOBAL_ANNOUNCEMENT}</td>
+<!-- End replacement - Global announcement MOD -->
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+<td width="20" align="center"><img src="{FOLDER_STICKY_IMG}" alt="{L_STICKY}" width="19" height="18" /></td>
+<td class="gensmall">{L_STICKY}</td>
+
+# 
+#-----[ REPLACE WITH ]---------------------------------------- 
+# 
+
+<!-- Start replacement - Global announcement MOD -->
+<td width="20" align="center"><img src="{FOLDER_ANNOUNCE_IMG}" alt="{L_ANNOUNCEMENT}" width="19" height="18" /></td>
+<td class="gensmall">{L_ANNOUNCEMENT}</td>
+<!-- End replacement - Global announcement MOD -->
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+<td class="gensmall"><img src="{FOLDER_LOCKED_IMG}"
+<td class="gensmall">{L_NO_NEW_POSTS_LOCKED}</td>
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+
+<!-- Start add - Global announcement MOD -->
+<td>&nbsp;&nbsp;</td>
+<td width="20" align="center"><img src="{FOLDER_STICKY_IMG}" alt="{L_STICKY}" width="19" height="18" /></td>
+<td class="gensmall">{L_STICKY}</td>
+<!-- End add - Global announcement MOD -->
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM

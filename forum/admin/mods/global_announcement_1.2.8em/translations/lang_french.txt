@@ -1,0 +1,50 @@
+############################################################## 
+## MOD Title:   Global announcement
+## MOD Version: 1.2.8
+## Translation: Français (French) 
+## Rev date:    13/12/2003
+##
+## Translator:  Dr DLP < DrDLP@phpbb-fr.com > (n/a) http://forums.phpbb-fr.com
+## 
+##############################################################
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_french/lang_admin.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Globalannounce'] ="Annonce globale"; 
+// End add - Global announcement MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+language/lang_french/lang_main.php
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+# 
+
+// Start add - Global announcement MOD
+$lang['Topic_global_announcement']="<b>Annonce globale:</b>"; 
+$lang['Post_global_announcement'] = "Annonce globale"; 
+// End add - Global announcement MOD
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]-------------------------------- 
+# 
+# EoM
