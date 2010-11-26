@@ -10,16 +10,18 @@ class Pages extends Show
 		if( $Url->Exists('id') )
  		{
  			$db=GetDB();
- 			$a=$db->GetValues('select * from '.PREFIX_DB.'pages where id='.$Url->ParamByName('id').' order by id','ALL');
+ 			$db->GoSql("SET NAMES 'cp1251'");
+ 			$a=$db->GetValues('select * from '.PREFIX_DB.'pages_new where id='.$Url->ParamByName('id').' order by id','ALL');
 	 		$this->FTitle=$a['NAME'];
 	 		$this->FContentTemplate='Pages.tpl';
 	 		$this->FContentParams['text']=$a['TEXT'];
+	 		$db->GoSql("SET NAMES 'latin1'");
 	 		unset($db);
  		}
  		else
  		{
  			$db=GetDB();
- 			$a=$db->GetValues('select * from '.PREFIX_DB.'pages where id=1 order by id','ALL');
+ 			$a=$db->GetValues('select * from '.PREFIX_DB.'pages_new where id=1 order by id','ALL');
 	 		$this->FTitle=$a['NAME'];
 	 		$this->FContentTemplate='Pages.tpl';
 	 		$this->FContentParams['text']=$a['TEXT'];

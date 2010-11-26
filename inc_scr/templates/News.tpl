@@ -3,7 +3,7 @@
 {foreach name=Outer from=$NewsItems item=NewsItem}
 <tr width="100%">
 	<td class="date" width="100%">
-		{$NewsItem.date} - {$NewsItem.title}
+		{$NewsItem.date} - <h2>{$NewsItem.title}</h2>
 	</td>
 </tr>
 <tr>

@@ -1,5 +1,6 @@
 <?php
 require_once(DataDir.'classes/MenuCreater.class.php'); //БД
+include(DataDir.'init_sape.php');
 
 class Show
 {
@@ -57,7 +58,13 @@ class Show
 		global $sid;
 		if( ($user_data['user_id']!=-1)and(IsKorsar($user_data['user_id'])==1) )
 			$this->FSmarty->assign( 'AdminLink',"<a href='http://${_SERVER['SERVER_NAME']}/cms/?sid=$sid'>Администраторский раздел</a>" );
-		//вывод на печать		$this->FSmarty->display('index.html');	}
+			
+		// Реклама
+		global $sape; 
+    	$this->FSmarty->assign('SapeLink', $sape->return_links(1));
+		$this->FSmarty->assign('SapeLinkBottom', $sape->return_links(2));    	
+		
+		// Вывод на печать		$this->FSmarty->display('index.html');	}
 
 	/* abstract */function getContent()
 	{

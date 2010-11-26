@@ -44,4 +44,9 @@
         <br /><a href="http://220.in.ua/">Hosted by 220</a>
         </td>
 </tr>
+<tr>
+        <td>
+        	{$SapeLink}
+        </td>
+</tr>
 </table>

@@ -150,5 +150,7 @@ document.write('<a href="http://www.uarating.com/" alt="uaRating" target="_blank
 <noscript><a href="http://www.uarating.com/" target="_blank"><img src="http://c.uarating.com/130;0x0;0;0;-;0" alt="uaRating" width="88" height="31" border="0"></a></noscript>	
 	</td>
 </tr>
-</table>
 {/literal}
+<tr colspan="7"><td>{$SapeLinkBottom}</td></tr>
+</table>
+
