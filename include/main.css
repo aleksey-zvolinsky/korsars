@@ -11,8 +11,8 @@ table#MainTable{width: 100%;border-width: thick; height: 100%}
 #MainDetailedMenu {margin-left: 10px; margin-top: 20px;}
 #MainDetailedMenu table tr td{ font-family:Arial; font-weight: bold; padding: 0px 0px 0px 8px; height: 44px; vertical-align: middle;}
 #MainDetailedMenu table tr td a{text-decoration: none; text-transform: uppercase; font-size: 16px; display:block; padding: 10px 0px 0px 40px;}
-#MainDetailedMenu table tr td a{ background: url(../images/carabine1.gif) no-repeat; display:block;height: 44px;}
-#MainDetailedMenu table tr td a:hover{ background: url(../images/carabine_hover1.gif) no-repeat; display:block;}
+#MainDetailedMenu table tr td a{ background: url(../images/carabine1_1.gif) no-repeat; display:block;height: 44px;}
+#MainDetailedMenu table tr td a:hover{ background: url(../images/carabine_hover1_1.gif) no-repeat; display:block;}
 #Content {color:#000033; text-indent:20px; padding-left: 10px; padding-right: 10px;}
 #Content a{color:#996666}
 #Content a:hover{color:#996666}
