@@ -1,7 +1,8 @@
 <table align="center" width="" border="0">
 <tr>
+<!--noindex-->
 	<td>
-	<a href='http://www.stat24.meta.ua' target='_blank'><img alt='МЕТА - Украина' border='0' src='http://stat24.meta.ua/img/counter/11.gif' /></a>
+	<a href='http://www.stat24.meta.ua' target='_blank' rel="nofollow"><img alt='МЕТА - Украина' border='0' src='http://stat24.meta.ua/img/counter/11.gif' /></a>
 	{if $smarty.server.REQUEST_URI=='/' or $smarty.server.REQUEST_URI==''}
 		<script type='text/javascript'>
 		<!--
@@ -43,18 +44,18 @@ screen.colorDepth:screen.pixelDepth)</script><script language="javascript1.3">ja
 <script language="javascript">java1+="&jscript="+java+"&rand="+Math.random();
 document.write("<a href='http://adrenaline.in.ua/top/stat.php?id=78&fromsite=1' target='_blank'><img "+
 " src='http://adrenaline.in.ua/top/img.php?id=78&"+java1+"&' border=0 alt='TOP-Adrenaline'></a>")</script>
-<noscript><a href=http://adrenaline.in.ua/top/ target=_blank><img src="http://adrenaline.in.ua/top/img.php?id=78" border=0 alt="TOP-Adrenaline"></a></noscript>
+<noscript><a href=http://adrenaline.in.ua/top/ target=_blank rel="nofollow"><img src="http://adrenaline.in.ua/top/img.php?id=78" border=0 alt="TOP-Adrenaline"></a></noscript>
 <!-- /TOP-Adrenaline -->
 
 	</td>
 	<td>
-	<!-- Start Vox code --> <a href="http://www.vox.com.ua/cat/from.php?866" target="_blank"><img src="http://www.vox.com.ua/button.gif" alt="[Vox.com.ua] Портал українця" width="88" height="31" border="0"></a> <!-- End Vox code -->
+	<!-- Start Vox code --> <a href="http://www.vox.com.ua/cat/from.php?866" target="_blank" rel="nofollow"><img src="http://www.vox.com.ua/button.gif" alt="[Vox.com.ua] Портал українця" width="88" height="31" border="0"></a> <!-- End Vox code -->
 	</td>
 	<td>
-	<a href="http://www.sova.com.ua"><img src="http://orden.sova.com.ua/cgi-bin/orden.cgi?korsars.kiev.ua" width=88 height=31 border=0 alt="Сова - поиск в Украине"></a>
+	<a href="http://www.sova.com.ua" rel="nofollow"><img src="http://orden.sova.com.ua/cgi-bin/orden.cgi?korsars.kiev.ua" width=88 height=31 border=0 alt="Сова - поиск в Украине"></a>
 	</td>
 	<td>
-	<!-- I.UA counter --><a href="http://www.i.ua/" target="_blank" onclick="this.href='http://i.ua/r.php?14959';" title="Rated by I.UA">
+	<!-- I.UA counter --><a href="http://www.i.ua/" target="_blank" onclick="this.href='http://i.ua/r.php?14959';" title="Rated by I.UA" rel="nofollow">
 		<script type="text/javascript" language="javascript"><!--
 		iS='<img src="http://r.i.ua/s?u14959&p261&n'+Math.random();
 		iD=document;iD.cookie="iua=1";if(iD.cookie)iS+='&c1';
@@ -72,7 +73,7 @@ document.write("<a href='http://adrenaline.in.ua/top/stat.php?id=78&fromsite=1' 
 <!-- SpyLOG -->
 <script src="http://tools.spylog.ru/counter2.2.js" type="text/javascript" id="spylog_code" counter="978042" ></script>
 <noscript>
-<a href="http://u9780.42.spylog.com/cnt?cid=978042&f=3&p=0" target="_blank">
+<a href="http://u9780.42.spylog.com/cnt?cid=978042&f=3&p=0" target="_blank" rel="nofollow">
 <img src="http://u9780.42.spylog.com/cnt?cid=978042&p=0" alt='SpyLOG' border='0' width=88 height=31 ></a> 
 </noscript>
 <!--/ SpyLOG -->
@@ -102,32 +103,32 @@ document.write("<a href='http://adrenaline.in.ua/top/stat.php?id=78&fromsite=1' 
 </tr>
 <tr>	
 	<td>
-		<a href="http://www.online.ua/" target="_blank"><img src="http://web.online.ua/img/2/03-2.gif" alt="Украина онлайн" border="0" width="88" height="17"></a>
+		<a href="http://www.online.ua/" target="_blank" rel="nofollow"><img src="http://web.online.ua/img/2/03-2.gif" alt="Украина онлайн" border="0" width="88" height="17"></a>
 	</td>
 	<td>
-<!-- code zakladka.org.ua --> <a href="http://zakladka.org.ua/category-24.html" title="Україномовні сайти"> <img src="http://zakladka.org.ua/button.google.png" border="0" width="88" height="31" alt="каталог сайтів"> </a><!-- code zakladka.org.ua -->
+<!-- code zakladka.org.ua --> <a href="http://zakladka.org.ua/category-24.html" title="Україномовні сайти" rel="nofollow"> <img src="http://zakladka.org.ua/button.google.png" border="0" width="88" height="31" alt="каталог сайтів"> </a><!-- code zakladka.org.ua -->
 	</td>
 	<td>
 <!-- code zakladka.org.ua -->
-<a href="http://zakladka.org.ua" title="Каталог україномовних сайтів">
+<a href="http://zakladka.org.ua" title="Каталог україномовних сайтів" rel="nofollow">
 <img src="http://zakladka.org.ua/button.yandex.png" border="0" width="88" height="31" alt="Каталог україномовних сайтів">
 </a>
 <!-- code zakladka.org.ua -->
 	</td>
 	<!--td>
 <!-- Початок банеру Lemky.com -- >
-<a href=http://www.lemky.com target=_blank>
+<a href=http://www.lemky.com target=_blank rel="nofollow">
 <img src=http://www.b.lemky.com/b24.gif width=88 height=15 border=0 alt="Lemky.com"></a>
 <!-- Кінець банеру Lemky.com -- >
 	</td-->
 	<td>
-<a href="http://www.topukraine.com/">
+<a href="http://www.topukraine.com/" rel="nofollow">
 <img src="http://www.topukraine.com/button.php?u=frendos" alt="Топ Україна" border="0" />
 </a>
 	</td>
 	<td>
 <!--LiveInternet counter--><script type="text/javascript"><!--
-document.write("<a href='http://www.liveinternet.ru/click' "+
+document.write("<a rel='nofollow' href='http://www.liveinternet.ru/click' "+
 "target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
 escape(document.referrer)+((typeof(screen)=="undefined")?"":
 ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
@@ -144,13 +145,14 @@ Nnv=navigator;Nna=Nnv.appName;Nd=document;Nd.cookie="b=b";Nc=0;if(Nd.cookie)Nc=1
 Nn=(Nna.substring(0,2)=="Mi")?0:1;Ns=screen;Npx=(Nn==0)?Ns.colorDepth:Ns.pixelDepth;
 str='<img src="http://c.uarating.com/130;'+Ns.width+'x'+Ns.height+';'+Npx+';'+Nc+';';
 str=str+escape(Nd.referrer)+';'+Math.random()+'" width="88" height="31" border="0">';
-document.write('<a href="http://www.uarating.com/" alt="uaRating" target="_blank">'+str+'<\/a>');
+document.write('<a href="http://www.uarating.com/" alt="uaRating" target="_blank" rel="nofollow">'+str+'<\/a>');
 // -->
 </script>
-<noscript><a href="http://www.uarating.com/" target="_blank"><img src="http://c.uarating.com/130;0x0;0;0;-;0" alt="uaRating" width="88" height="31" border="0"></a></noscript>	
+<noscript><a href="http://www.uarating.com/" target="_blank" rel="nofollow"><img src="http://c.uarating.com/130;0x0;0;0;-;0" alt="uaRating" width="88" height="31" border="0"></a></noscript>	
 	</td>
 </tr>
+<!--/noindex-->
 {/literal}
-<tr colspan="7"><td>{$SapeLinkBottom}</td></tr>
+<tr><td colspan="7">{$SapeLinkBottom}</td></tr>
 </table>
 

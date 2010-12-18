@@ -1,5 +1,5 @@
-body{font-size: 14px; margin-top: 0px; margin-bottom: 0px; text-indent:0px;}
-table{border-width: none;}
+body{background-color: #FFFFFF; margin: 0px; font-size: 14px; text-indent:0px;}
+table{border-width: 0px;}
 h1, h2, h3, h4, h5, h6{font-family: Geneva, Arial, Helvetica, sans-serif; color:#333366}
 h1{text-align:center;font-size: 18px; font-style:italic; margin-top: 12px;}
 h2{text-align:center;font-size: 16px;}
@@ -7,7 +7,7 @@ h3{text-align:left;font-size: 16px;}
 p{}
 a{color:#000033}
 a:hover{color:#000033}
-table#MainTable{width: 100%;border-width: thick; height: 100%}
+table#MainTable{width: 100%;border-width: 0px; height: 100%}
 #MainDetailedMenu {margin-left: 10px; margin-top: 20px;}
 #MainDetailedMenu table tr td{ font-family:Arial; font-weight: bold; padding: 0px 0px 0px 8px; height: 44px; vertical-align: middle;}
 #MainDetailedMenu table tr td a{text-decoration: none; text-transform: uppercase; font-size: 16px; display:block; padding: 10px 0px 0px 40px;}
@@ -23,3 +23,5 @@ table#MainTable{width: 100%;border-width: thick; height: 100%}
 #LeftBanner table tr td{text-align: center;}
 #LeftBanner table tr.header td{text-align: center; font-weight: bold;}
 #News .date h2 {display: inline; text-align: left;}
+#BottomBanner{opacity:0.3; -moz-opacity:0.3; filter:alpha (opacity=40);}
+#BottomBanner :hover{opacity:1.0; -moz-opacity:1.0; filter:alpha (opacity=100);}

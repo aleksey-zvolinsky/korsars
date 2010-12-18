@@ -8,7 +8,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/'._SAPE_USER.'/sape.php'); 
                          
 $o['force_show_code'] = true;
-
+//$o = array();
 $sape = new SAPE_client($o);
 //echo $sape->return_links();
 //	print_r($sape);
